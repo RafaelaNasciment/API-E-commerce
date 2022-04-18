@@ -28,7 +28,7 @@ namespace eCommerce.Services
 
         //Criando um novo
 
-        public Produto Create (Produto produto)
+        public Produto Create(Produto produto)
         {
             _produtos.InsertOne(produto);
             return produto;
@@ -46,6 +46,5 @@ namespace eCommerce.Services
 
         public void Remove(int id) =>
             _produtos.DeleteOne(produto => produto.Id == id);
-
     }
 }

@@ -4,6 +4,8 @@
     {
         public string ProdutoCollectionName {get; set; } 
 
+        public string ClienteCollectionName { get; set; }
+
         public string ConnectionString { get; set; } 
 
         public string DatabaseName { get; set; }
@@ -12,6 +14,8 @@
     public interface IProdutoDatabaseSettings
     {
         string ProdutoCollectionName { get; set; } 
+
+        string ClienteCollectionName { get; set; }
 
         string ConnectionString { get; set; } 
 
