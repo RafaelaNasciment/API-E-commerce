@@ -6,6 +6,8 @@
 
         public string ClienteCollectionName { get; set; }
 
+        public string PedidoCollectionName { get; set; }
+
         public string ConnectionString { get; set; } 
 
         public string DatabaseName { get; set; }
@@ -16,6 +18,8 @@
         string ProdutoCollectionName { get; set; } 
 
         string ClienteCollectionName { get; set; }
+
+        string PedidoCollectionName { get; set; }
 
         string ConnectionString { get; set; } 
 

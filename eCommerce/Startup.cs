@@ -32,6 +32,8 @@ namespace eCommerce
 
             services.AddSingleton<ClienteService>();
 
+            services.AddSingleton<PedidoService>();
+
             services.AddControllers();
                 
             services.AddSwaggerGen(c =>
