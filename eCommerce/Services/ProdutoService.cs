@@ -9,7 +9,7 @@ namespace eCommerce.Services
     {
         private readonly IMongoCollection<Produto> _produtos;
 
-        public ProdutoService(IProdutoDatabaseSettings settings)
+        public ProdutoService(IEcommerceDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
@@ -23,7 +23,7 @@ namespace eCommerce.Services
 
         //GetById
 
-        public Produto Get(int id) =>
+        public Produto Get(string id) =>
             _produtos.Find<Produto>(produto => produto.Id == id).FirstOrDefault();
 
         //Criando um novo
@@ -36,7 +36,7 @@ namespace eCommerce.Services
 
         //Atualizando
 
-        public void Update(int id, Produto produtoIn) =>
+        public void Update(string id, Produto produtoIn) =>
             _produtos.ReplaceOne(produto => produto.Id == id, produtoIn);
 
         //Deletar ou remover um produto
@@ -44,7 +44,7 @@ namespace eCommerce.Services
         public void Remove(Produto produtoIn) =>
             _produtos.DeleteOne(produto => produto.Id == produtoIn.Id);
 
-        public void Remove(int id) =>
+        public void Remove(string id) =>
             _produtos.DeleteOne(produto => produto.Id == id);
     }
 }

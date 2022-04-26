@@ -10,36 +10,42 @@ namespace eCommerce.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly PedidoService _pedidoService;
-
+        private readonly ClienteService _clienteService;
         private readonly ProdutoService _produtoService;
 
-        public PedidoController(PedidoService pedidoService)
+        public PedidoController(PedidoService pedidoService, ClienteService clienteService, ProdutoService produtoService)
         {
-            _pedidoService = pedidoService; 
+            _pedidoService = pedidoService;
+            _clienteService = clienteService;
+            _produtoService = produtoService;
+
         }
 
-        //[HttpGet]
-        //public ActionResult<List<Pedido>> Get() =>
-        //    _pedidoService.Get(); 
-
         [HttpGet("{id}", Name = "GetPedido")]
-        public ActionResult<Pedido> Get(int id, bool ativo)
+        public ActionResult<Pedido> Get(string id)
         {
             var pedido = _pedidoService.Get(id);
 
-            if (pedido == null) 
+            if (pedido == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
-            return pedido;
+            return Ok(pedido);
         }
 
         [HttpPost]
-        public ActionResult<Pedido> Create(Pedido pedido)
+        public ActionResult<Pedido> Create([FromBody] string idProduto, [FromBody] string idCliente)
         {
-            _pedidoService.Create(pedido);
-            return CreatedAtRoute("GetPedido", new { id = pedido.Id.ToString() }, pedido);
-            
+            var produto = _produtoService.Get(idProduto);
+            var cliente = _clienteService.Get(idCliente);
+
+            if (produto.Ativo == true && cliente.Ativo == true)
+            {
+                Pedido pedido = new Pedido(idProduto, idCliente, produto.Preco);
+                _pedidoService.Create(pedido);
+                return Ok(pedido);
+            }
+            return BadRequest("Produto ou cliente inativo na base!");
         }
     }
 }

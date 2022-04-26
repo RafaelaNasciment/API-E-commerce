@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace eCommerce.Controllers
 {
-    [Route("api/controller")]
+    [Route("api/Produto")]
     [ApiController]
     public class ProdutoController : ControllerBase
     {
@@ -20,9 +20,9 @@ namespace eCommerce.Controllers
         public ActionResult<List<Produto>> Get() =>
             _produtoService.Get();
 
-        //GetById
+        
         [HttpGet("{id}", Name = "GetProduto")]
-        public ActionResult<Produto> Get(int id) 
+        public ActionResult<Produto> Get(string id) 
         { 
             var produto = _produtoService.Get(id);
 
@@ -34,15 +34,19 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Produto> Create(Produto produto)
+        public ActionResult<Produto> Create([FromBody]string nome, [FromBody] string descricao, 
+            [FromBody]decimal preco, [FromBody] bool ativo)
         {
+            Produto produto = new Produto(nome, descricao, preco, ativo);
+
             _produtoService.Create(produto);
 
-            return CreatedAtRoute("GetProduto", new { id = produto.Id.ToString() }, produto);
+            return Ok(produto);
         }
 
         [HttpPut("id")]
-        public IActionResult Update(int id, Produto produtoIn)
+        public IActionResult Update([FromQuery]string id, [FromBody] string nome, [FromBody] string descricao,
+            [FromBody] decimal preco, [FromBody] bool ativo)
         {
             var produto = _produtoService.Get(id);
 
@@ -50,14 +54,18 @@ namespace eCommerce.Controllers
             {
                 return NotFound("Não encontrado!");
             }
+            produto.Nome = nome;
+            produto.Descricao = descricao;
+            produto.Preco = preco;
+            produto.Ativo = ativo;
 
-            _produtoService.Update(id, produtoIn);
+            _produtoService.Update(id, produto);
 
-            return NoContent();
+            return Ok(produto);
         }
 
         [HttpDelete("id")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var produto = _produtoService.Get(id);
 
@@ -69,8 +77,6 @@ namespace eCommerce.Controllers
             _produtoService.Remove(id);
 
             return NoContent();
-        }
-                
-
+        }              
     }
 }

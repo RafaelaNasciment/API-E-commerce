@@ -20,8 +20,8 @@ namespace eCommerce.Controllers
         public ActionResult<List<Cliente>> Get() =>
             _clienteService.Get();
 
-        [HttpGet("{id}", Name = "GetCliente")]
-        public ActionResult<Cliente> Get(int id)
+        [HttpGet]
+        public ActionResult<Cliente> Get(string id)
         {
             var cliente = _clienteService.Get(id);
 
@@ -33,15 +33,16 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Cliente> Create(Cliente cliente)
+        public ActionResult<Cliente> Create(string nome, [FromBody]bool ativo)
         {
+            Cliente cliente = new Cliente(nome, ativo);
+
            _clienteService.Create(cliente);
-            return CreatedAtRoute("GetCliente", new {id = cliente.Id.ToString()}, cliente);
+            return Ok(cliente);
         }
 
-        [HttpPut("id")]
-
-        public IActionResult Update(int id, Cliente clienteIn)
+        [HttpPut]
+        public IActionResult Update([FromQuery]string id, [FromBody] string nome, [FromBody] bool ativo)
         {
             var cliente = _clienteService.Get(id);
 
@@ -49,13 +50,16 @@ namespace eCommerce.Controllers
             {
                 return NotFound("Não encontrado!");
             }
-            _clienteService.Update(id, clienteIn);
+            cliente.Nome = nome;
+            cliente.Ativo = ativo;
 
-            return NoContent();
+            _clienteService.Update(id, cliente);
+
+            return Ok();
         }
         
-        [HttpDelete("id")]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete(string id)
         {
             var cliente = _clienteService.Get(id);
 
@@ -66,7 +70,7 @@ namespace eCommerce.Controllers
 
             _clienteService.Remove(id);
 
-            return NoContent();
+            return Ok();
         }
     }
 }

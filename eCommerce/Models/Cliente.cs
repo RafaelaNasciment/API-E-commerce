@@ -1,13 +1,20 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace eCommerce.Models
 {
     public class Cliente
     {
-        [BsonId]
-        public int Id { get; set; }
+        public Cliente(string nome, bool ativo)
+        {
+            Id = Guid.NewGuid().ToString();
+            Nome = nome;
+            Ativo = ativo;
+        }
 
-        [BsonElement("Name")]
+        [BsonId]
+        public string Id { get; set; }
+
         public string Nome { get; set; }
 
         public bool Ativo { get; set; }

@@ -8,7 +8,7 @@ namespace eCommerce.Services
     {
         private readonly IMongoCollection<Cliente> _clientes;
 
-        public ClienteService(IProdutoDatabaseSettings settings)
+        public ClienteService(IEcommerceDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
@@ -20,7 +20,9 @@ namespace eCommerce.Services
         public List<Cliente> Get() =>
             _clientes.Find(cliente => true).ToList();
 
-        public Cliente Get(int id) =>
+        //Cliente pelo Id
+
+        public Cliente Get(string id) =>
             _clientes.Find<Cliente>(cliente => cliente.Id == id).FirstOrDefault();
 
         //Criando um novo cliente
@@ -30,16 +32,26 @@ namespace eCommerce.Services
             return cliente;
         }
 
+        //Verificando se o cliente está ativo
+        public bool Teste(bool ativo)
+        {
+            
+            ativo = true;
+            _clientes.Find<Cliente>(cliente => cliente.Ativo == ativo);
+            if (ativo == true) { return true; }
+            else { return false; }
+        }
+
         //Atualizando um cliente
 
-        public void Update(int id, Cliente clienteIn) =>
+        public void Update(string id, Cliente clienteIn) =>
             _clientes.ReplaceOne(cliente => cliente.Id == id, clienteIn);
 
         //Deletando um cliente
-        public void Remove(Produto clienteIn) =>
+        public void Remove(Cliente clienteIn) =>
             _clientes.DeleteOne(cliente => cliente.Id == clienteIn.Id);
 
-        public void Remove(int id) =>
-            _clientes.DeleteOne(cliente => cliente.Id == id);
+        public void Remove(string id) =>
+            _clientes.DeleteOne(cliente => cliente.Id == id);           
     }
 }
