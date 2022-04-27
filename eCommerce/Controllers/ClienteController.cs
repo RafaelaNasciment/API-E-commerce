@@ -1,4 +1,5 @@
 ﻿using eCommerce.Models;
+using eCommerce.RequestApi.ClienteController;
 using eCommerce.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace eCommerce.Controllers
             _clienteService = clienteService;
         }
 
+        
         [HttpGet]
         public ActionResult<List<Cliente>> Get() =>
             _clienteService.Get();
 
-        [HttpGet]
+        
+        [HttpGet("id")]
         public ActionResult<Cliente> Get(string id)
         {
             var cliente = _clienteService.Get(id);
@@ -31,32 +34,34 @@ namespace eCommerce.Controllers
             }
             return cliente;
         }
-
+        
         [HttpPost]
-        public ActionResult<Cliente> Create(string nome, [FromBody]bool ativo)
+        public ActionResult<Cliente> Create([FromBody] CadastroClienteRequestApi cadastroCliente)
         {
-            Cliente cliente = new Cliente(nome, ativo);
+            Cliente cliente = new Cliente(cadastroCliente.Nome, cadastroCliente.Ativo);
 
            _clienteService.Create(cliente);
             return Ok(cliente);
         }
 
+        
         [HttpPut]
-        public IActionResult Update([FromQuery]string id, [FromBody] string nome, [FromBody] bool ativo)
+        public IActionResult Update([FromBody] AtualizarClienteRequestApi atualizarCliente)
         {
-            var cliente = _clienteService.Get(id);
+            var cliente = _clienteService.Get(atualizarCliente.Id);
 
             if(cliente == null)
             {
                 return NotFound("Não encontrado!");
             }
-            cliente.Nome = nome;
-            cliente.Ativo = ativo;
+            cliente.Nome = atualizarCliente.Nome;
+            cliente.Ativo = atualizarCliente.Ativo;
 
-            _clienteService.Update(id, cliente);
+            _clienteService.Update(atualizarCliente.Id, cliente);
 
             return Ok();
         }
+
         
         [HttpDelete]
         public IActionResult Delete(string id)

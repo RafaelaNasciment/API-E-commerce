@@ -12,7 +12,7 @@ namespace eCommerce.Models
             Ativo = ativo;
         }
 
-        [BsonId]
+        //[BsonId]
         public string Id { get; set; }
 
         public string Nome { get; set; }

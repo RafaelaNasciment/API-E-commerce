@@ -1,4 +1,7 @@
 ﻿using eCommerce.Models;
+using eCommerce.RequestApi.ClienteController;
+using eCommerce.RequestApi.PedidoController;
+using eCommerce.RequestApi.ProdutoController;
 using eCommerce.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -34,10 +37,10 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Produto> Create([FromBody]string nome, [FromBody] string descricao, 
-            [FromBody]decimal preco, [FromBody] bool ativo)
+        public ActionResult<Produto> Create([FromBody] CadastroProdutoRequestApi cadastroProduto)
         {
-            Produto produto = new Produto(nome, descricao, preco, ativo);
+            Produto produto = new Produto(cadastroProduto.Nome, cadastroProduto.Descricao, 
+                cadastroProduto.Preco,cadastroProduto.Ativo);
 
             _produtoService.Create(produto);
 
@@ -45,21 +48,20 @@ namespace eCommerce.Controllers
         }
 
         [HttpPut("id")]
-        public IActionResult Update([FromQuery]string id, [FromBody] string nome, [FromBody] string descricao,
-            [FromBody] decimal preco, [FromBody] bool ativo)
+        public IActionResult Update([FromBody]AtualizarProdutoRequestApi atualizarProduto)
         {
-            var produto = _produtoService.Get(id);
+            var produto = _produtoService.Get(atualizarProduto.Id);
 
             if(produto == null)
             {
                 return NotFound("Não encontrado!");
             }
-            produto.Nome = nome;
-            produto.Descricao = descricao;
-            produto.Preco = preco;
-            produto.Ativo = ativo;
+            produto.Nome = atualizarProduto.Nome;
+            produto.Descricao = atualizarProduto.Descricao;
+            produto.Preco = atualizarProduto.Preco;
+            produto.Ativo = atualizarProduto.Ativo;
 
-            _produtoService.Update(id, produto);
+            _produtoService.Update(atualizarProduto.Id, produto);
 
             return Ok(produto);
         }

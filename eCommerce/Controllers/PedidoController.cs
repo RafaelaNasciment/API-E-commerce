@@ -1,4 +1,5 @@
 ﻿using eCommerce.Models;
+using eCommerce.RequestApi.ClienteController;
 using eCommerce.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace eCommerce.Controllers
 
         }
 
+
         [HttpGet("{id}", Name = "GetPedido")]
         public ActionResult<Pedido> Get(string id)
         {
@@ -34,14 +36,14 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Pedido> Create([FromBody] string idProduto, [FromBody] string idCliente)
+        public ActionResult<Pedido> Create([FromBody] CadastroPedidoRequestApi cadastroPedido)
         {
-            var produto = _produtoService.Get(idProduto);
-            var cliente = _clienteService.Get(idCliente);
+            var produto = _produtoService.Get(cadastroPedido.IdProduto); ;
+            var cliente = _clienteService.Get(cadastroPedido.IdCliente);
 
             if (produto.Ativo == true && cliente.Ativo == true)
             {
-                Pedido pedido = new Pedido(idProduto, idCliente, produto.Preco);
+                Pedido pedido = new Pedido(cadastroPedido.IdProduto, cadastroPedido.IdCliente, produto.Preco);
                 _pedidoService.Create(pedido);
                 return Ok(pedido);
             }

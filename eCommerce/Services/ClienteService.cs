@@ -32,15 +32,6 @@ namespace eCommerce.Services
             return cliente;
         }
 
-        //Verificando se o cliente está ativo
-        public bool Teste(bool ativo)
-        {
-            
-            ativo = true;
-            _clientes.Find<Cliente>(cliente => cliente.Ativo == ativo);
-            if (ativo == true) { return true; }
-            else { return false; }
-        }
 
         //Atualizando um cliente
 

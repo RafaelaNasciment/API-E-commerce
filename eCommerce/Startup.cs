@@ -27,11 +27,11 @@ namespace eCommerce
             services.AddSingleton<IEcommerceDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<EcommerceDatabaseSettings>>().Value);
 
-            services.AddTransient<ProdutoService>();
+            services.AddSingleton<ProdutoService>();
 
-            services.AddTransient<ClienteService>();
+            services.AddSingleton<ClienteService>();
 
-            services.AddTransient<PedidoService>();
+            services.AddSingleton<PedidoService>();
 
             services.AddControllers();
 
