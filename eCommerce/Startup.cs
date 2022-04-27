@@ -1,4 +1,3 @@
-using eCommerce.Models;
 using eCommerce.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,30 +21,35 @@ namespace eCommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<ProdutoDatabaseSettings>(
-                Configuration.GetSection(nameof(ProdutoDatabaseSettings)));
+            services.Configure<EcommerceDatabaseSettings>(
+                Configuration.GetSection(nameof(EcommerceDatabaseSettings)));
 
-            services.AddSingleton<IProdutoDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<ProdutoDatabaseSettings>>().Value);
+            services.AddSingleton<IEcommerceDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<EcommerceDatabaseSettings>>().Value);
 
             services.AddSingleton<ProdutoService>();
 
+            services.AddSingleton<ClienteService>();
+
+            services.AddSingleton<PedidoService>();
+
             services.AddControllers();
+
                 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API E-Commerce", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "API E-Commerce", Version = "v2" });
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "eCommerce.API - v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "eCommerce.API - v2"));
             }
 
             app.UseHttpsRedirection();
@@ -56,7 +60,7 @@ namespace eCommerce
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+               endpoints.MapControllers();
             });
         }
     }
