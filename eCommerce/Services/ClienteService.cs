@@ -1,5 +1,6 @@
 ﻿using eCommerce.Models;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 
 namespace eCommerce.Services
@@ -16,33 +17,71 @@ namespace eCommerce.Services
             _clientes = database.GetCollection<Cliente>(settings.ClienteCollectionName);
         }
 
-        //Vendo todos clientes
+        public ClienteService()
+        {
+        }
+        
         public List<Cliente> Get() =>
             _clientes.Find(cliente => true).ToList();
 
         //Cliente pelo Id
 
-        public Cliente Get(string id) =>
-            _clientes.Find<Cliente>(cliente => cliente.Id == id).FirstOrDefault();
+        public Cliente Get(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+            var result = _clientes.Find<Cliente>(cliente => cliente.Id == id).FirstOrDefault();
+            return result;
+        }
 
         //Criando um novo cliente
         public Cliente Create(Cliente cliente)
         {
+            
+            if (String.IsNullOrEmpty(cliente.Nome))
+            {               
+                return null;
+            }
+            if(cliente.Nome.Length > 50)
+            {
+                return null;
+            }
             _clientes.InsertOne(cliente);
             return cliente;
         }
 
-
         //Atualizando um cliente
 
-        public void Update(string id, Cliente clienteIn) =>
+        public Cliente Update(string id, Cliente clienteIn)
+        {
+            if (String.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+
+            if (String.IsNullOrEmpty(clienteIn.Nome))
+            {
+                return null;
+            }
+
+            if (clienteIn.Nome.Length > 50)
+            {
+                return null;
+            }
             _clientes.ReplaceOne(cliente => cliente.Id == id, clienteIn);
-
-        //Deletando um cliente
-        public void Remove(Cliente clienteIn) =>
-            _clientes.DeleteOne(cliente => cliente.Id == clienteIn.Id);
-
-        public void Remove(string id) =>
-            _clientes.DeleteOne(cliente => cliente.Id == id);           
+            return clienteIn;
+        }
+        public DeleteResult Remove(string id)
+        {
+            if (String.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+            var delete = _clientes.DeleteOne(cliente => cliente.Id == id);
+            return delete;
+        }
+         
     }
 }

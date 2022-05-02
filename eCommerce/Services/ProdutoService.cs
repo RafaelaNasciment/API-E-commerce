@@ -16,35 +16,60 @@ namespace eCommerce.Services
 
             _produtos = database.GetCollection<Produto>(settings.ProdutoCollectionName);
         }
-        
-        //Get All
+
+        public ProdutoService()
+        {
+        }
+
         public List<Produto> Get() =>
             _produtos.Find(produto => true).ToList();
 
-        //GetById
-
-        public Produto Get(string id) =>
-            _produtos.Find<Produto>(produto => produto.Id == id).FirstOrDefault();
-
-        //Criando um novo
+        public Produto Get(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+            var result = _produtos.Find<Produto>(produto => produto.Id == id).FirstOrDefault();
+            return result;
+        }
 
         public Produto Create(Produto produto)
         {
+            if (string.IsNullOrEmpty(produto.Nome) || string.IsNullOrEmpty(produto.Descricao) || (produto.Preco <= 0))
+            {
+                return null;
+            }
+            if(produto.Nome.Length > 50 || produto.Descricao.Length > 200)
+            {
+                return null;
+            }
+
             _produtos.InsertOne(produto);
             return produto;
         }
+        public Produto Update(string id, Produto produtoIn) 
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(produtoIn.Nome) || string.IsNullOrEmpty(produtoIn.Descricao) || (produtoIn.Preco <= 0))
+            {
+                return null;
+            }
+            if(produtoIn.Nome.Length > 50 || produtoIn.Descricao.Length > 200)
+            {
+                return null;
+            }
 
-        //Atualizando
-
-        public void Update(string id, Produto produtoIn) =>
             _produtos.ReplaceOne(produto => produto.Id == id, produtoIn);
-
-        //Deletar ou remover um produto
-
-        public void Remove(Produto produtoIn) =>
-            _produtos.DeleteOne(produto => produto.Id == produtoIn.Id);
-
-        public void Remove(string id) =>
-            _produtos.DeleteOne(produto => produto.Id == id);
+            return produtoIn;
+        }
+        public DeleteResult Remove(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+            var delete = _produtos.DeleteOne(produto => produto.Id == id);
+            return delete;
+        }
     }
 }

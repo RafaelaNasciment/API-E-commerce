@@ -14,13 +14,23 @@ namespace eCommerce.Services
 
             _pedidos = database.GetCollection<Pedido>(settings.PedidoCollectionName);
         }
+        public PedidoService()
+        {
+        }
 
         public Pedido Get(string id) =>
             _pedidos.Find<Pedido>(pedido => pedido.Id == id).FirstOrDefault();
     
-        //Criando um novo pedido
         public Pedido Create(Pedido pedido)
         {
+            if (string.IsNullOrEmpty(pedido.IdProduto) || string.IsNullOrEmpty(pedido.IdCliente))
+            {
+                return null;
+            }
+            if(pedido.ValorTotal <= 0)
+            {
+                return null;
+            }
             _pedidos.InsertOne(pedido);
             return pedido;                               
         }
