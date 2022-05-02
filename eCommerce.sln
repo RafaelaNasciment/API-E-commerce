@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce", "eCommerce\eCommerce.csproj", "{1BC113AB-F26B-4495-8A64-695640C05EA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce", "eCommerce\eCommerce.csproj", "{1BC113AB-F26B-4495-8A64-695640C05EA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eCommerceApiTest", "eCommerceApiTest", "{3567A5F3-D8C6-49A7-B034-F4DABC2635E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClienteServiceTest", "ClienteServiceTest", "{EE04FAF7-6C96-46F6-843C-AF6427B283CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClienteServiceTest", "ClienteControllerTest\ClienteServiceTest.csproj", "{1F0EDD06-91B2-415D-AD76-B6DD3C991844}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProdutoServiceTest", "ProdutoServiceTest", "{2F3F0691-AC97-48C6-BAC6-89E4DC6CEFA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoServiceTest", "ProdutoServiceTest\ProdutoServiceTest.csproj", "{19A36022-6AD8-456B-844D-45001A6B120A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PedidoServiceTest", "PedidoServiceTest", "{68E5B33F-C384-4AC3-B48C-4CD79F5C5711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidoServiceTest", "PedidoServiceTest\PedidoServiceTest.csproj", "{A9E66D20-9C96-4E33-851E-19A8399BE2D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +29,29 @@ Global
 		{1BC113AB-F26B-4495-8A64-695640C05EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BC113AB-F26B-4495-8A64-695640C05EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BC113AB-F26B-4495-8A64-695640C05EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F0EDD06-91B2-415D-AD76-B6DD3C991844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F0EDD06-91B2-415D-AD76-B6DD3C991844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F0EDD06-91B2-415D-AD76-B6DD3C991844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F0EDD06-91B2-415D-AD76-B6DD3C991844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A36022-6AD8-456B-844D-45001A6B120A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A36022-6AD8-456B-844D-45001A6B120A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A36022-6AD8-456B-844D-45001A6B120A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A36022-6AD8-456B-844D-45001A6B120A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9E66D20-9C96-4E33-851E-19A8399BE2D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E66D20-9C96-4E33-851E-19A8399BE2D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E66D20-9C96-4E33-851E-19A8399BE2D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E66D20-9C96-4E33-851E-19A8399BE2D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE04FAF7-6C96-46F6-843C-AF6427B283CE} = {3567A5F3-D8C6-49A7-B034-F4DABC2635E3}
+		{1F0EDD06-91B2-415D-AD76-B6DD3C991844} = {EE04FAF7-6C96-46F6-843C-AF6427B283CE}
+		{2F3F0691-AC97-48C6-BAC6-89E4DC6CEFA3} = {3567A5F3-D8C6-49A7-B034-F4DABC2635E3}
+		{19A36022-6AD8-456B-844D-45001A6B120A} = {2F3F0691-AC97-48C6-BAC6-89E4DC6CEFA3}
+		{68E5B33F-C384-4AC3-B48C-4CD79F5C5711} = {3567A5F3-D8C6-49A7-B034-F4DABC2635E3}
+		{A9E66D20-9C96-4E33-851E-19A8399BE2D8} = {68E5B33F-C384-4AC3-B48C-4CD79F5C5711}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {483E6CC3-FCF8-4B01-9396-26B7F36C55FD}

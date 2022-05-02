@@ -42,8 +42,11 @@ namespace eCommerce.Controllers
             Produto produto = new Produto(cadastroProduto.Nome, cadastroProduto.Descricao, 
                 cadastroProduto.Preco,cadastroProduto.Ativo);
 
-            _produtoService.Create(produto);
-
+            var result = _produtoService.Create(produto);
+            if (result == null)
+            {
+                return BadRequest("Favor preencher os dados de maneira correta!");
+            }
             return Ok(produto);
         }
 
@@ -61,7 +64,11 @@ namespace eCommerce.Controllers
             produto.Preco = atualizarProduto.Preco;
             produto.Ativo = atualizarProduto.Ativo;
 
-            _produtoService.Update(atualizarProduto.Id, produto);
+            var result = _produtoService.Update(atualizarProduto.Id, produto);
+            if(result == null)
+            {
+                return BadRequest("Favor preencher os dados de maneira correta!");
+            }
 
             return Ok(produto);
         }

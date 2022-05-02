@@ -41,6 +41,10 @@ namespace eCommerce.Controllers
             var produto = _produtoService.Get(cadastroPedido.IdProduto); ;
             var cliente = _clienteService.Get(cadastroPedido.IdCliente);
 
+            if(produto == null || cliente == null)
+            {
+                return BadRequest("Favor preencher todas informações!");
+            }
             if (produto.Ativo == true && cliente.Ativo == true)
             {
                 Pedido pedido = new Pedido(cadastroPedido.IdProduto, cadastroPedido.IdCliente, produto.Preco);
