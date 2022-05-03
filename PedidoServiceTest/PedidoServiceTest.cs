@@ -13,7 +13,7 @@ namespace PedidoServiceTest
     public class PedidoServiceTest : PedidoService
     {
         [Fact(DisplayName = "CREATE: Testando IdProduto nulo")]
-        public void testandoIdProdutoNulo()
+        public void TestandoIdProdutoNulo()
         {
             var pedido = new Pedido(null, "123", 15m);
             var pedidoService = Create(pedido);
@@ -21,8 +21,8 @@ namespace PedidoServiceTest
             Assert.Null(pedidoService);
         }
 
-        [Fact(DisplayName = "CREATE: Testando IdCliente nulo")]
-        public void testandoIdClienteNulo()
+        [Fact(DisplayName = "CREATE: IdCliente nulo")]
+        public void TestandoIdClienteNulo()
         {
             var pedido = new Pedido("123", null, 15m);
             var pedidoService = Create(pedido);
@@ -30,8 +30,8 @@ namespace PedidoServiceTest
             Assert.Null(pedidoService);
         }
 
-        [Fact(DisplayName = "CREATE: Testando Valor zerado")]
-        public void testandoValorZerado()
+        [Fact(DisplayName = "CREATE: Valor zerado")]
+        public void TestandoValorZerado()
         {
             var pedido = new Pedido("123", "123", 0m);
             var pedidoService = Create(pedido);

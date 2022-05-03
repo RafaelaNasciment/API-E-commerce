@@ -18,8 +18,6 @@ namespace eCommerce.Controllers
             _clienteService = clienteService;
         }
 
-
-
         [HttpGet]
         public ActionResult<List<Cliente>> Get() =>
             _clienteService.Get();

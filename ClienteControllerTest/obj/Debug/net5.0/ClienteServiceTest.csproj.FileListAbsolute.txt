@@ -129,3 +129,7 @@ C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\obj\Debug\net5.0\refint\
 C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\obj\Debug\net5.0\ClienteServiceTest.pdb
 C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\obj\Debug\net5.0\ClienteServiceTest.genruntimeconfig.cache
 C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\obj\Debug\net5.0\ref\ClienteServiceTest.dll
+C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\bin\Debug\net5.0\AspNetAutoBogus.dll
+C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\bin\Debug\net5.0\AutoBogus.dll
+C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\bin\Debug\net5.0\Bogus.dll
+C:\exercicios\eCommerce\eCommerce\ClienteControllerTest\bin\Debug\net5.0\JetBrains.Annotations.dll

@@ -11,8 +11,6 @@ namespace eCommerce.Models
             Nome = nome;
             Ativo = ativo;
         }
-
-        //[BsonId]
         public string Id { get; set; }
 
         public string Nome { get; set; }

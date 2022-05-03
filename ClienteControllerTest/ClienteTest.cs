@@ -5,74 +5,73 @@ using Xunit;
 
 namespace ClienteControllerTest
 {
-    public class ClienteTest
+    public class ClienteTest : ClienteService 
     {
-        #region Teste Método Create
-
-        [Fact(DisplayName = "CREATE: Testando se o Nome é nulo")]
-        public void TestandoNomeNulo()
+        private NomeAleatorio _nomeAleatorio;
+        private string id = Guid.NewGuid().ToString();
+        public ClienteTest()
         {
-            var novoCliente = new Cliente("", true);
-
-            var clienteCreate = new ClienteService();
-            var result = clienteCreate.Create(novoCliente);
-            
-            Assert.Null(result);
+            _nomeAleatorio = new NomeAleatorio();
         }
 
-        [Fact(DisplayName = "CREATE: Lista de limite de caracteres")]
-        public void TestandoLimiteCaracteres()
-        {
-            var nomeLimite = new NomeAleatorio().nomeAleatorio();
-            var clienteNome = new Cliente(nomeLimite, true);
-            var clienteService = new ClienteService();
+        #region Teste Método Create
 
-            var result = clienteService.Create(clienteNome);
+        [Fact(DisplayName = "CREATE: Nome nulo")]
+        public void TestandoNomeNulo()
+        {
+            var cliente = new Cliente("", true);
+
+            var expected = Create(cliente);
+            
+            Assert.Null(expected);
+        }
+
+        [Fact(DisplayName = "CREATE: Limite de caracteres Nome")]
+        public void TestandoLimiteCaracteresNome()
+        {
+            var cliente = new Cliente(_nomeAleatorio.nomeAleatorio(), true);
+
+            var result = Create(cliente);
 
             Assert.Null(result);
         }
         #endregion
 
         #region Testando Método Update
-        [Fact(DisplayName = "UPDATE: Testando se o nome é nulo ao atualizar")]
-        public void testandoNomeNulo()
+        [Fact(DisplayName = "UPDATE: Nome nulo")]
+        public void TestandoNomeNuloUpdate()
         {
             var cliente = new Cliente("", true);
-            var clienteService = new ClienteService();
-
-            var result = clienteService.Create(cliente);
+            var result = Create(cliente);
 
             Assert.Null(result);
         }
-        [Fact(DisplayName = "UPDATE: Testando limite de caracteres ao atualizar um nome")]
-        public void testandoLimiteCaracteresNome()
-        {
-            var id = Guid.NewGuid();
-            var nome = new NomeAleatorio().nomeAleatorio();
-            var cliente = new Cliente(nome, true);
-            var clienteService = new ClienteService();
 
-            var result = clienteService.Update(Convert.ToString(id), cliente);
+        [Fact(DisplayName = "UPDATE: Limite de caracteres Nome")]
+        public void TestandoLimiteCaracteresNomeUpdate()
+        {
+            var cliente = new Cliente(_nomeAleatorio.nomeAleatorio(), true);
+            var result = Update(Convert.ToString(id), cliente);
+
             Assert.Null(result);
         }
 
         [Fact(DisplayName = "UPDATE: Testando Id vazio")]
-        public void testandoIdVazio()
+        public void TestandoIdVazio()
         {
             var cliente = new Cliente("Rafaela", true);
-            var clienteService = new ClienteService();
-            var result = clienteService.Update(null, cliente);
+            var result = Update(null, cliente);
 
             Assert.Null(result);
         }
         #endregion
 
         #region Testando Método Delete
-        [Fact(DisplayName = "DELETE: Verificando se o ID está vazio")]
-        public void testandoIdVazioDelete()
+
+        [Fact(DisplayName = "DELETE: ID vazio")]
+        public void TestandoIdVazioDelete()
         {
-            var clienteService = new ClienteService();
-            var result = clienteService.Remove(null);
+            var result = Remove(null);
 
             Assert.Null(result);
         }

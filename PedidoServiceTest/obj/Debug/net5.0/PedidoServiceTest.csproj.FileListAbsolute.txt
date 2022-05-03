@@ -129,3 +129,7 @@ C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\obj\Debug\net5.0\refint\Pedi
 C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\obj\Debug\net5.0\PedidoServiceTest.pdb
 C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\obj\Debug\net5.0\PedidoServiceTest.genruntimeconfig.cache
 C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\obj\Debug\net5.0\ref\PedidoServiceTest.dll
+C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\bin\Debug\net5.0\AspNetAutoBogus.dll
+C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\bin\Debug\net5.0\AutoBogus.dll
+C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\bin\Debug\net5.0\Bogus.dll
+C:\exercicios\eCommerce\eCommerce\PedidoServiceTest\bin\Debug\net5.0\JetBrains.Annotations.dll

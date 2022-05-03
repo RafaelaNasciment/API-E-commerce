@@ -19,9 +19,7 @@ namespace eCommerce.Controllers
             _pedidoService = pedidoService;
             _clienteService = clienteService;
             _produtoService = produtoService;
-
         }
-
 
         [HttpGet("{id}", Name = "GetPedido")]
         public ActionResult<Pedido> Get(string id)

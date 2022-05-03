@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "lcGqCs1NwhRxyKZjFLrDwZ6UVfEtYfFZHhXV2G5glnUi6F+gwJQwQPfAWv/T5S8fyTqjfpsPzza5rfxTHBd0ZQ==",
+  "dgSpecHash": "yCn7mTchFqOfR6hWUdTSmT6QbW6woW3ph0v+ga0laURnLNNQ667R3huiRJ4QSqSAdb6x4IZOYLCjDud5+j4YGg==",
   "success": true,
   "projectFilePath": "C:\\exercicios\\eCommerce\\eCommerce\\ProdutoServiceTest\\ProdutoServiceTest.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\aspnetautobogus\\1.0.0\\aspnetautobogus.1.0.0.nupkg.sha512",
+    "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\autobogus\\2.7.1\\autobogus.2.7.1.nupkg.sha512",
+    "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\bogus\\28.2.1\\bogus.28.2.1.nupkg.sha512",
     "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\dnsclient\\1.6.0\\dnsclient.1.6.0.nupkg.sha512",
+    "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\jetbrains.annotations\\2019.1.3\\jetbrains.annotations.2019.1.3.nupkg.sha512",
     "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\rafaela.carvalho\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

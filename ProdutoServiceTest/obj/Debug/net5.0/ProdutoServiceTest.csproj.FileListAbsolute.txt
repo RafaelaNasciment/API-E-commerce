@@ -129,3 +129,7 @@ C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\obj\Debug\net5.0\refint\Pro
 C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\obj\Debug\net5.0\ProdutoServiceTest.pdb
 C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\obj\Debug\net5.0\ProdutoServiceTest.genruntimeconfig.cache
 C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\obj\Debug\net5.0\ref\ProdutoServiceTest.dll
+C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\bin\Debug\net5.0\AspNetAutoBogus.dll
+C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\bin\Debug\net5.0\AutoBogus.dll
+C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\bin\Debug\net5.0\Bogus.dll
+C:\exercicios\eCommerce\eCommerce\ProdutoServiceTest\bin\Debug\net5.0\JetBrains.Annotations.dll

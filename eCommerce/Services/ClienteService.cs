@@ -8,7 +8,6 @@ namespace eCommerce.Services
     public class ClienteService
     {
         private readonly IMongoCollection<Cliente> _clientes;
-
         public ClienteService(IEcommerceDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
@@ -20,11 +19,9 @@ namespace eCommerce.Services
         public ClienteService()
         {
         }
-        
+       
         public List<Cliente> Get() =>
             _clientes.Find(cliente => true).ToList();
-
-        //Cliente pelo Id
 
         public Cliente Get(string id)
         {
@@ -36,7 +33,6 @@ namespace eCommerce.Services
             return result;
         }
 
-        //Criando um novo cliente
         public Cliente Create(Cliente cliente)
         {
             
@@ -51,8 +47,6 @@ namespace eCommerce.Services
             _clientes.InsertOne(cliente);
             return cliente;
         }
-
-        //Atualizando um cliente
 
         public Cliente Update(string id, Cliente clienteIn)
         {

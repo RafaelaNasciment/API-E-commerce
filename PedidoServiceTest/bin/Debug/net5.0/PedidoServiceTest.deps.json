@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "PedidoServiceTest/1.0.0": {
         "dependencies": {
+          "AspNetAutoBogus": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.9.4",
           "coverlet.collector": "3.0.2",
           "eCommerce": "1.0.0",
@@ -16,6 +17,37 @@
         },
         "runtime": {
           "PedidoServiceTest.dll": {}
+        }
+      },
+      "AspNetAutoBogus/1.0.0": {
+        "dependencies": {
+          "AutoBogus": "2.7.1",
+          "JetBrains.Annotations": "2019.1.3"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/AspNetAutoBogus.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AutoBogus/2.7.1": {
+        "dependencies": {
+          "Bogus": "28.2.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoBogus.dll": {
+            "assemblyVersion": "2.7.1.0",
+            "fileVersion": "2.7.1.0"
+          }
+        }
+      },
+      "Bogus/28.2.1": {
+        "runtime": {
+          "lib/netstandard2.0/Bogus.dll": {
+            "assemblyVersion": "28.2.1.0",
+            "fileVersion": "28.2.1.0"
+          }
         }
       },
       "coverlet.collector/3.0.2": {},
@@ -27,6 +59,14 @@
           "lib/net5.0/DnsClient.dll": {
             "assemblyVersion": "1.6.0.0",
             "fileVersion": "1.6.0.0"
+          }
+        }
+      },
+      "JetBrains.Annotations/2019.1.3": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "2019.1.3.0",
+            "fileVersion": "2019.1.3.0"
           }
         }
       },
@@ -1465,6 +1505,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AspNetAutoBogus/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dUCW+Bg5+xHwI5cah2d3lduya6hoBHVl075ujarHlXVtLVoNbrCrpp6ZvlzSYiBGaNtwG2/3PcxyTLHHVg/xmg==",
+      "path": "aspnetautobogus/1.0.0",
+      "hashPath": "aspnetautobogus.1.0.0.nupkg.sha512"
+    },
+    "AutoBogus/2.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZfJo8gvcRp1kw9sl+6FWcIPTKEsESUp8lSwusYNLUxwBo0f1feYBKBHc6fp+As6tHnt+8LGCp3m0w6OoOdFHrQ==",
+      "path": "autobogus/2.7.1",
+      "hashPath": "autobogus.2.7.1.nupkg.sha512"
+    },
+    "Bogus/28.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dZQaFlUEQM37guSVqy4xj7t9r6j5TNfxJaWtM1VTtjtXcuuLP8SOAyJ+gTlPecSrzGQCP4CLlun9PvWVtVMZbQ==",
+      "path": "bogus/28.2.1",
+      "hashPath": "bogus.28.2.1.nupkg.sha512"
+    },
     "coverlet.collector/3.0.2": {
       "type": "package",
       "serviceable": true,
@@ -1478,6 +1539,13 @@
       "sha512": "sha512-kVd3IxAs5EQZSKTQhMUaJmuOQ1n2VWKExatdqNszsxxKzTB+Toaxx3M1DsN3yKfHloMXPmt6fgfcOqRwKheoUQ==",
       "path": "dnsclient/1.6.0",
       "hashPath": "dnsclient.1.6.0.nupkg.sha512"
+    },
+    "JetBrains.Annotations/2019.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E0x48BwZJKoNMNCekWGKsV4saQS89lf58ydT2szseV44CMYIbaHXjc7+305WLw6up3ibZN9yH6QdGSZo5tQhLg==",
+      "path": "jetbrains.annotations/2019.1.3",
+      "hashPath": "jetbrains.annotations.2019.1.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
       "type": "package",

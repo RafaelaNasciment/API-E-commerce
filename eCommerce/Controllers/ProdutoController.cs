@@ -13,7 +13,6 @@ namespace eCommerce.Controllers
     public class ProdutoController : ControllerBase
     {
         private readonly ProdutoService _produtoService;
-
         public ProdutoController(ProdutoService produtoService)
         {
             _produtoService = produtoService;
@@ -22,8 +21,7 @@ namespace eCommerce.Controllers
         [HttpGet]
         public ActionResult<List<Produto>> Get() =>
             _produtoService.Get();
-
-        
+       
         [HttpGet("{id}", Name = "GetProduto")]
         public ActionResult<Produto> Get(string id) 
         { 

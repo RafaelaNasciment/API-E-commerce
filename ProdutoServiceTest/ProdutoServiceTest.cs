@@ -1,66 +1,65 @@
 ﻿using eCommerce.Models;
 using eCommerce.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ProdutoServiceTest
 {
-    public class ProdutoServiceTest
+    public class ProdutoServiceTest : ProdutoService
     {
+        private readonly NomeAleatorio _nomeAleatorio;
+        private readonly DescriçãoAleatoria _descriçãoAleatoria;
+        string id = Guid.NewGuid().ToString();
+        public ProdutoServiceTest()
+        {
+            _nomeAleatorio = new NomeAleatorio();
+            _descriçãoAleatoria = new DescriçãoAleatoria();
+        }
+
         #region Testando método Create
-        [Fact(DisplayName = "CREATE: Testando nome Nulo está passando")]
-        public void testandoNomeNulo()
+        [Fact(DisplayName = "CREATE: Nome Nulo")]
+        public void TestandoNomeNulo()
         {
             var produto = new Produto("", "123456", 12.5m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Create(produto);
+            var result = Create(produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "CREATE: Testando limite de caracteres do Nome")]
-        public void limiteCaracteresNome()
+        [Fact(DisplayName = "CREATE: Limite de caracteres Nome")]
+        public void TestandoLimiteCaracteresNome()
         {
-            var nome = new NomeAleatorio().nomeAleatorio();
-            var produto = new Produto(nome, "123456", 12.5m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Create(produto);
+            var produto = new Produto(_nomeAleatorio.nomeAleatorio(), "123456", 12.5m, true);
+
+            var result = Create(produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "CREATE: Testando descrição nula está passando")]
-        public void testandoDescricaoNulo()
+        [Fact(DisplayName = "CREATE: Descrição Nula")]
+        public void TestandoDescricaoNulo()
         {
-            var produto = new Produto("Rafaela", "", 12.5m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Create(produto);
+            var produto = new Produto("Rafaela","", 12.5m, true);
+            var result = Create(produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "CREATE: Testando limite de caracteres descrição")]
-        public void limiteCaracteresDescricao()
+        [Fact(DisplayName = "CREATE: Limite de caracteres descrição")]
+        public void LimiteCaracteresDescricao()
         {
-            var descricao = new DescriçãoAleatoria().descricao();
-            var produto = new Produto("Rafaela", descricao, 12.5m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Create(produto);
+            var produto = new Produto("Rafaela", _descriçãoAleatoria.descricao(), 12.5m, true);
+            var result = Create(produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "CREATE: Testando se o preço é maior que zero")]
-        public void testandoPrecoZero()
+        [Fact(DisplayName = "CREATE: Preço maior que zero")]
+        public void TestandoPrecoZero()
         {
-            var descricao = new DescriçãoAleatoria().descricao();
             var produto = new Produto("Rafaela", "1234", 0m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Create(produto);
+
+            var result = Create(produto);
 
             Assert.Null(result);
         }
@@ -68,67 +67,63 @@ namespace ProdutoServiceTest
         #endregion
 
         #region Testando método Update
-        [Fact(DisplayName = "UPDATE: Verificando se o ID está vazio")]
-        public void idVazio()
+
+        [Fact(DisplayName = "UPDATE: ID Vazio")]
+        public void TestandoIdVazio()
         {
             var produto = new Produto("Rafa", "Teste", 15m, true);
-            var produtoService = new ProdutoService();
-            produtoService.Update(null, produto);
+
+            var result = Update(null, produto);
+
+            Assert.Null(result);
         }
 
-        [Fact(DisplayName = "UPDATE: Testando se o nome está nulo")]
-        public void testandoNomeNuloUpdate()
+        [Fact(DisplayName = "UPDATE: Nome Nulo")]
+        public void TestandoNomeNuloUpdate()
         {
-            var id = Guid.NewGuid();
             var produto = new Produto(null, "123", 5m, false);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Update(id.ToString(), produto);
+
+            var result = Update(id, produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "UPDATE: Testando Limite de caracteres Nome")]
-        public void testandoLimiteCaractersNomeUpdate()
+        [Fact(DisplayName = "UPDATE: Limite caracteres Nome")]
+        public void TestandoLimiteCaracteresNomeUpdate()
         {
-            var id = Guid.NewGuid();
-            var nome = new NomeAleatorio().nomeAleatorio();
-            var produto = new Produto(nome, "123", 5m, false);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Update(id.ToString(), produto);
+            var produto = new Produto(_nomeAleatorio.nomeAleatorio(), "123", 5m, false);
+
+            var result = Update(id, produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "UPDATE: Testando Descrição nula")]
-        public void testandoDescricaoNulaUpdate()
+        [Fact(DisplayName = "UPDATE: Descrição nula")]
+        public void TestandoDescricaoNulaUpdate()
         {
-            var id = Guid.NewGuid();
             var produto = new Produto("Rafaela", "", 5m, false);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Update(id.ToString(), produto);
+
+            var result = Update(id, produto);
 
             Assert.Null(result);
         }
 
-        [Fact(DisplayName = "UPDATE: Testando Limite de caracteres Descricao")]
-        public void testandoLimiteCaractersDescricaoUpdate()
+        [Fact(DisplayName = "UPDATE: Limite caracteres Descricao")]
+        public void TestandoLimiteCaractersDescricaoUpdate()
         {
-            var id = Guid.NewGuid();
-            var descricao = new DescriçãoAleatoria().descricao();
-            var produto = new Produto("Rafaela", descricao, 51m, false);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Update(id.ToString(), produto);
+            var produto = new Produto("Rafaela", _descriçãoAleatoria.descricao(), 51m, false);
+
+            var result = Update(id, produto);
 
             Assert.Null(result);
         }
         
-        [Fact(DisplayName = "UPDATE: Testando Preco está maior que zero")]
+        [Fact(DisplayName = "UPDATE: Preco maior que zero")]
         public void testandoPrecoUpdate()
         {
-            var id = Guid.NewGuid().ToString();
             var produto = new Produto("Rafa", "Teste", 0m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Update(id, produto);
+
+            var result = Update(id, produto);
 
             Assert.Null(result);           
         }
@@ -136,12 +131,12 @@ namespace ProdutoServiceTest
         #endregion
 
         #region Testando método Delete
-        [Fact(DisplayName = "DELETE: Testando ID Vazio")]
-        public void idVazioDelete()
+        [Fact(DisplayName = "DELETE: ID Vazio")]
+        public void TestandoIdVazioDelete()
         {
             var produto = new Produto("Rafa", "Teste", 15m, true);
-            var produtoService = new ProdutoService();
-            var result = produtoService.Remove(null);
+
+            var result = Remove(null);
 
             Assert.Null(result);
         }

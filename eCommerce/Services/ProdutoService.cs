@@ -8,7 +8,6 @@ namespace eCommerce.Services
     public class ProdutoService 
     {
         private readonly IMongoCollection<Produto> _produtos;
-
         public ProdutoService(IEcommerceDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
